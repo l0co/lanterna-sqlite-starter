@@ -15,6 +15,14 @@ abstract class Service<ID, T: Model<ID>> {
     val table: String
         get() = (clazz.annotations.find { it.annotationClass == Table::class } as Table).name
 
+    fun findById(id: ID): T? {
+        return query().sql("select * from $table where id=?", id).first(clazz.java)
+    }
+
+    fun findAll(): List<T> {
+        return query().sql("select * from $table").results(clazz.java)
+    }
+
     fun count(): Int = Db.query().sql("select count(*) from $table").first(Int::class.java)
 
     /** Used to iterate through all objects without loading a full dataset to memory **/
@@ -34,10 +42,6 @@ abstract class Service<ID, T: Model<ID>> {
 
             }
         }
-    }
-
-    fun findById(id: ID): T? {
-        return query().sql("select * from $table where id=?", id).first(clazz.java)
     }
 
     fun upsert(t: T): T {

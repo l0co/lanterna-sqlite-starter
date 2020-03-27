@@ -12,7 +12,7 @@ import javax.persistence.*
 @Table(name = "my_entity")
 data class MyEntity(
     var str: String,
-    @get:Column(name = "int") var i: Int,
+    @get:Column(name = "int") var int: Int,
     @get:Column(name = "dbl") @get:Convert(converter = SqliteDecimalConverter::class) var dbl: Double,
     @get:Column(name = "bool") @get:Convert(converter = SqliteBooleanConverter::class) var bool: Boolean
 ): Model<Int>() {

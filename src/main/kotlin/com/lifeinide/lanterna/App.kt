@@ -10,6 +10,7 @@ import com.lifeinide.lanterna.service.ExecutorService
 import com.lifeinide.lanterna.service.Logger
 import com.lifeinide.lanterna.service.ThrobberService
 import com.lifeinide.lanterna.ui.BrowserHelper
+import com.lifeinide.lanterna.ui.MainWindow
 import java.awt.Dimension
 
 /**
@@ -61,10 +62,10 @@ object App {
         BrowserHelper.waitingOp(textGUI, "Updating database...") {
             if (Db.empty)
                 Db.populateTestData()
-            Thread.sleep(2000) // TODO remove me, this is just a showcase for the throbber
+            Thread.sleep(1000) // TODO remove me, this is just a showcase for the throbber
         }
 
-//        textGUI.addWindowAndWait(PhrasesBrowserWindow().window)
+        textGUI.addWindowAndWait(MainWindow().window)
 
         ExecutorService.done()
         screen.stopScreen()
