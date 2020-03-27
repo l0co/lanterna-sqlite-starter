@@ -1,4 +1,4 @@
-package com.lifeinide.lanterna.utils
+package com.lifeinide.lanterna.ui
 
 import com.googlecode.lanterna.gui2.WindowBasedTextGUI
 import com.googlecode.lanterna.gui2.dialogs.WaitingDialog

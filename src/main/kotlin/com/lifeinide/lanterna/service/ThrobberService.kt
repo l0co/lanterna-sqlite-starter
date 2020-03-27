@@ -1,4 +1,4 @@
-package common.service
+package com.lifeinide.lanterna.service
 
 import com.googlecode.lanterna.gui2.AnimatedLabel
 
@@ -20,7 +20,7 @@ object ThrobberService {
     }
 
     fun stop() {
-        if (--startCounter==0)
+        if (--startCounter ==0)
             throbber.stopAnimation()
     }
 

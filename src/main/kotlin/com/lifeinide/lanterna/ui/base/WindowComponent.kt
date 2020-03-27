@@ -1,4 +1,4 @@
-package com.lifeinide.lanterna.base
+package com.lifeinide.lanterna.ui.base
 
 import com.googlecode.lanterna.gui2.AbstractInteractableComponent
 import com.googlecode.lanterna.gui2.Window

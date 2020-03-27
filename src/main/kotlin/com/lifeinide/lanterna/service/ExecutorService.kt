@@ -1,6 +1,5 @@
 package com.lifeinide.lanterna.service
 
-import common.service.ThrobberService
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 
