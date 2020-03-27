@@ -4,6 +4,8 @@ import java.util.concurrent.Executors
 import java.util.concurrent.Future
 
 /**
+ * Allows to execute tasks in the background thread pool.
+ *
  * @author Lukasz Frankowski
  */
 object ExecutorService {
@@ -12,9 +14,13 @@ object ExecutorService {
     private var currentJobs = mutableMapOf<String, Future<*>>()
 
     /**
-     * Executes single job. Cancels previous job executed if is in progress.
+     * Executes single job. Cancels previous job with the same name if is in progress or in delay mode.
+     *
+     * @param jobName Give if you want to be able to cancel the job with another job with the same name.
+     * @param delay Delay before the job is triggered. This is useful if you plan to cancel this job before it starts.
+     * @param f The job.
      */
-    fun executeCancellable(jobName: String? = null, delay: Long = 0, f: () -> Unit): Future<*> {
+    fun execute(jobName: String? = null, delay: Long = 0, f: () -> Unit): Future<*> {
         if (jobName!=null)
             currentJobs[jobName]?.apply {
                 if (!isDone && !isCancelled) {

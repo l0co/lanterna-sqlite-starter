@@ -16,7 +16,7 @@ object BrowserHelper {
         WaitingDialog.createDialog("Please wait", msg).let {
             Logger.log("Adding waiting window: $msg")
             gui.addWindow(it)
-            val future = ExecutorService.executeCancellable {
+            val future = ExecutorService.execute {
                 op()
             }
 
