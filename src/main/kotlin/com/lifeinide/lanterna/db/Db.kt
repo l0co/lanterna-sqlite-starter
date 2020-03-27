@@ -7,22 +7,29 @@ import com.lifeinide.lanterna.db.model.MyEntity
 import com.lifeinide.lanterna.db.service.MyEntityService
 
 /**
+ * A database management singleton.
+ *
  * @author Lukasz Frankowski
  */
 object Db: Database() {
+
+    const val JDBC_URL = "jdbc:sqlite:db.sqlite"
 
     val currentTransaction: ThreadLocal<Transaction> = ThreadLocal()
     var empty: Boolean = false
         get() = field
 
     init {
-        setJdbcUrl("jdbc:sqlite:db.sqlite")
+        setJdbcUrl(JDBC_URL)
         if (!updateDb()) {
             createDb()
             empty = true
         }
     }
 
+    /**
+     * Creates database structure.
+     */
     fun createDb() {
         try {
             arrayOf(
@@ -36,6 +43,9 @@ object Db: Database() {
         }
     }
 
+    /**
+     * Populates test data on freshly created database.
+     */
     fun populateTestData() {
         MyEntityService.insert(MyEntity("one", 1, 1.1, true))
         MyEntityService.insert(MyEntity("two", 2, 2.1, true))
@@ -43,7 +53,7 @@ object Db: Database() {
     }
 
     /**
-     * Executed the database update if the db version doesn't match.
+     * Executes the database update if the db version doesn't match.
      *
      * @return False if database is emtpy and needs to be created
      */
@@ -71,6 +81,9 @@ object Db: Database() {
         return true
     }
 
+    /**
+     * Always start from this point to create query.
+     */
     fun query(): Query {
         val q = Query(Db)
         if (currentTransaction.get()!=null)
@@ -78,6 +91,17 @@ object Db: Database() {
         return q
     }
 
+    /**
+     * Allows to execute multiple queries transactionally.
+     *
+     * ```kotlin
+     * Db.doTransactionally {
+     *   Db.query().sql(...).execute(...);
+     *   Db.query().sql(...).results(...);
+     *   Db.query().sql(...).single(...);
+     * }
+     * ```
+     */
     fun doTransactionally(f: () -> Unit) {
         // use current transaction
         if (currentTransaction.get()!=null) {

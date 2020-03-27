@@ -1,8 +1,10 @@
-package common.db
+package com.lifeinide.lanterna.db
 
 import javax.persistence.AttributeConverter
 
 /**
+ * Required for **norm** to map `Boolean` fields.
+ *
  * @author Lukasz Frankowski
  */
 class SqliteBooleanConverter: AttributeConverter<Boolean, Int> {

@@ -6,6 +6,8 @@ import javax.persistence.Table
 import kotlin.reflect.KClass
 
 /**
+ * Base class for all entity services.
+ *
  * @author Lukasz Frankowski
  */
 abstract class Service<ID, T: Model<ID>> {

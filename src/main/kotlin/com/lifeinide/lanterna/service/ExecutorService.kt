@@ -53,7 +53,10 @@ object ExecutorService {
         return future
     }
 
-    fun done() {
+    /**
+     * Shutdowns the pool. Should be executed before application stops.
+     */
+    fun shutdown() {
         currentJobs.values.forEach {
             if (!it.isDone && !it.isCancelled)
                 it.cancel(true)

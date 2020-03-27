@@ -1,6 +1,8 @@
 package com.lifeinide.lanterna.db.model
 
 /**
+ * Base class for all entities.
+ *
  * @author Lukasz Frankowski
  */
 abstract class Model<T> {

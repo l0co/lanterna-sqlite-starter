@@ -3,6 +3,8 @@ package com.lifeinide.lanterna.service
 import java.time.Instant
 
 /**
+ * Logs some info on console while application works on the `SwingTerminalFrame`.
+ *
  * @author Lukasz Frankowski
  */
 class Logger {

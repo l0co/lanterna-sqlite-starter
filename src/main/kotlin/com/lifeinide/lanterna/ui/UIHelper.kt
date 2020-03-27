@@ -8,10 +8,15 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
 /**
+ * Additional helper for UI.
+ *
  * @author Lukasz Frankowski
  */
-object BrowserHelper {
+object UIHelper {
 
+    /**
+     * Displays waiting window and executed background operation using the `ExecutorService`.
+     */
     fun waitingOp(gui: WindowBasedTextGUI, msg: String, op: () -> Unit) {
         WaitingDialog.createDialog("Please wait", msg).let {
             Logger.log("Adding waiting window: $msg")

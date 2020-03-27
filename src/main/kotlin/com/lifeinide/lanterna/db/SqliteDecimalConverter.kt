@@ -1,8 +1,10 @@
-package common.db
+package com.lifeinide.lanterna.db
 
 import javax.persistence.AttributeConverter
 
 /**
+ * Required for **norm** to map `Double` fields.
+ *
  * @author Lukasz Frankowski
  */
 class SqliteDecimalConverter: AttributeConverter<Double, Number> {

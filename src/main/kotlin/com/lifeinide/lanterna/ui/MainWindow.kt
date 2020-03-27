@@ -6,6 +6,8 @@ import com.lifeinide.lanterna.service.Logger
 import com.lifeinide.lanterna.ui.base.WindowComponent
 
 /**
+ * The main app window to display example data from the db.
+ *
  * @author Lukasz Frankowski
  */
 class MainWindow: WindowComponent() {

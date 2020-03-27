@@ -1,11 +1,11 @@
 package com.lifeinide.lanterna.db.model
 
-import common.db.SqliteBooleanConverter
-import common.db.SqliteDecimalConverter
+import com.lifeinide.lanterna.db.SqliteBooleanConverter
+import com.lifeinide.lanterna.db.SqliteDecimalConverter
 import javax.persistence.*
 
 /**
- * An example entity.
+ * The example entity.
  *
  * @author Lukasz Frankowski
  */

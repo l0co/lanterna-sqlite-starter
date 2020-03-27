@@ -9,11 +9,13 @@ import com.lifeinide.lanterna.db.Db
 import com.lifeinide.lanterna.service.ExecutorService
 import com.lifeinide.lanterna.service.Logger
 import com.lifeinide.lanterna.service.ThrobberService
-import com.lifeinide.lanterna.ui.BrowserHelper
 import com.lifeinide.lanterna.ui.MainWindow
+import com.lifeinide.lanterna.ui.UIHelper
 import java.awt.Dimension
 
 /**
+ * Main application / entrypoint.
+ *
  * @author Lukasz Frankowski
  */
 object App {
@@ -59,7 +61,7 @@ object App {
             Logger.loggingEnabled = true // for swing panel, which is separate from the console, we can enable logs
         }
 
-        BrowserHelper.waitingOp(textGUI, "Updating database...") {
+        UIHelper.waitingOp(textGUI, "Updating database...") {
             if (Db.empty)
                 Db.populateTestData()
             Thread.sleep(1000) // TODO remove me, this is just a showcase for the throbber
@@ -67,7 +69,7 @@ object App {
 
         textGUI.addWindowAndWait(MainWindow().window)
 
-        ExecutorService.done()
+        ExecutorService.shutdown()
         screen.stopScreen()
 
     }

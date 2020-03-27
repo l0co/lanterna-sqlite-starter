@@ -3,6 +3,8 @@ package com.lifeinide.lanterna.service
 import com.googlecode.lanterna.gui2.AnimatedLabel
 
 /**
+ * Works with `ExecutorService` to provide animated throbber on the status bar.
+ *
  * @author Lukasz Frankowski
  */
 object ThrobberService {
